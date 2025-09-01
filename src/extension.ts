@@ -1,26 +1,41 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import * as fs from "fs"
+import * as path from "path"
+import * as vscode from "vscode"
+import { downloadYumlParser, runYumlParser } from "./yuml-parser"
+import { getYumlJson } from "./yuml-json"
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
+  const workspaceFolders = vscode.workspace.workspaceFolders
+	if (!workspaceFolders) return
+	
+	const root = workspaceFolders[0].uri.fsPath
+	const yumlJsonPath = path.join(root, "yuml.json")
+	const yumlDir = path.join(root, ".yuml")
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "yuml-runner-vscode" is now active!');
+	if (fs.existsSync(yumlJsonPath)) {
+		if (!fs.existsSync(yumlDir)) {
+			fs.mkdirSync(yumlDir)
+		}
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('yuml-runner-vscode.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from yUML Runner!');
-	});
-
-	context.subscriptions.push(disposable);
+		const yumlParser = await downloadYumlParser(root)
+		if (!yumlParser) return
+		
+		watchYumlFiles()
+	}
 }
 
-// This method is called when your extension is deactivated
-export function deactivate() {}
+function watchYumlFiles() {
+  const workspaceFolders = vscode.workspace.workspaceFolders
+	if (!workspaceFolders) return
+	
+	const root = workspaceFolders[0].uri.fsPath
+	const yumlJson = getYumlJson()
+	if (!yumlJson) return
+
+	const workflows = path.join(root, yumlJson.workflows)
+	const watcher = vscode.workspace.createFileSystemWatcher(
+    new vscode.RelativePattern(workflows, "**/*.yuml")
+  )
+  watcher.onDidChange(uri => runYumlParser(uri.fsPath))
+  watcher.onDidCreate(uri => runYumlParser(uri.fsPath))
+}
