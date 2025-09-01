@@ -12,10 +12,12 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [
+    "jsonValidation": [
       {
-        "command": "yuml-runner-vscode.helloWorld",
-        "title": "Hello World"
+        "fileMatch": [
+          "yuml.json"
+        ],
+        "url": "./schemas/yuml.json"
       }
     ]
   },
