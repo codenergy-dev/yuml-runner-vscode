@@ -3,6 +3,7 @@ import * as path from "path"
 import * as vscode from "vscode"
 import { downloadYumlParser, runYumlParser } from "./yuml-parser"
 import { getYumlJson } from "./yuml-json"
+import { YumlImportCompletionProvider } from "./providers/yuml-import-completion-provider"
 
 export async function activate(context: vscode.ExtensionContext) {
   const workspaceFolders = vscode.workspace.workspaceFolders
@@ -21,6 +22,8 @@ export async function activate(context: vscode.ExtensionContext) {
 		if (!yumlParser) return
 		
 		watchYumlFiles()
+
+		context.subscriptions.push(YumlImportCompletionProvider);
 	}
 }
 
