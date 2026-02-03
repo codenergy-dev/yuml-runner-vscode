@@ -1,0 +1,38 @@
+// {type:class}
+// {direction:leftToRight}
+// {generate:true}
+// {import:src/pipelines/ast.ts}
+
+[workspace.root]->[path.join|path1=.yuml/]
+[path.join]->[fs.mkdirSync]
+[fs.mkdirSync]->[format.formatArgs:dir|$path=dir]
+
+[load]->[loadDart]
+[loadDart]->[format.formatArgs:dartInput|$path=arg3]
+[loadDart]->[path.format:dart|ext=.json]
+
+[path.format:dart]^[format.formatArgs:dir]
+[path.format:dart]->[format.formatArgs:dartOutput|$path=arg4]
+
+[extension.extensionPath:dart]->[path.join:dart|path1=ast/dart/main.dart]
+[path.join:dart]->[format.formatArgs:dartBin|$path=arg2]
+
+[child-process.spawnSync:dart|command=dart|arg1=run]
+[format.formatArgs:dartBin]->[child-process.spawnSync:dart]
+[format.formatArgs:dartInput]->[child-process.spawnSync:dart]
+[format.formatArgs:dartOutput]->[child-process.spawnSync:dart]
+
+[load]->[loadTypeScript]
+[loadTypeScript]->[format.formatArgs:typescriptInput|$path=arg2]
+[loadTypeScript]->[path.format:typescript|ext=.json]
+
+[path.format:typescript]^[format.formatArgs:dir]
+[path.format:typescript]->[format.formatArgs:typescriptOutput|$path=arg3]
+
+[extension.extensionPath:typescript]->[path.join:typescript|path1=ast/typescript/main.js]
+[path.join:typescript]->[format.formatArgs:typescriptBin|$path=arg1]
+
+[child-process.spawnSync:typescript|command=node]
+[format.formatArgs:typescriptBin]->[child-process.spawnSync:typescript]
+[format.formatArgs:typescriptInput]->[child-process.spawnSync:typescript]
+[format.formatArgs:typescriptOutput]->[child-process.spawnSync:typescript]

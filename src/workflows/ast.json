@@ -1,0 +1,645 @@
+[
+  {
+    "name": "workspace.root",
+    "function": "root",
+    "path": "workspace",
+    "workflow": "ast",
+    "args": {},
+    "fanIn": [],
+    "fanOut": [
+      "path.join"
+    ],
+    "entrypoint": true,
+    "dependencies": [],
+    "executionPlan": [
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir"
+    ]
+  },
+  {
+    "name": "load",
+    "function": "load",
+    "path": null,
+    "workflow": "ast",
+    "args": {},
+    "fanIn": [],
+    "fanOut": [
+      "loadDart",
+      "loadTypeScript"
+    ],
+    "entrypoint": true,
+    "dependencies": [],
+    "executionPlan": [
+      "load",
+      "loadDart",
+      "format.formatArgs:dartInput",
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "path.format:dart",
+      "format.formatArgs:dartOutput",
+      "extension.extensionPath:dart",
+      "path.join:dart",
+      "format.formatArgs:dartBin",
+      "child-process.spawnSync:dart",
+      "loadTypeScript",
+      "format.formatArgs:typescriptInput",
+      "path.format:typescript",
+      "format.formatArgs:typescriptOutput",
+      "extension.extensionPath:typescript",
+      "path.join:typescript",
+      "format.formatArgs:typescriptBin",
+      "child-process.spawnSync:typescript"
+    ]
+  },
+  {
+    "name": "extension.extensionPath:dart",
+    "function": "extensionPath",
+    "path": "extension",
+    "workflow": "ast",
+    "args": {},
+    "fanIn": [],
+    "fanOut": [
+      "path.join:dart"
+    ],
+    "entrypoint": true,
+    "dependencies": [],
+    "executionPlan": [
+      "extension.extensionPath:dart",
+      "path.join:dart",
+      "format.formatArgs:dartBin",
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "load",
+      "loadDart",
+      "path.format:dart",
+      "format.formatArgs:dartOutput",
+      "format.formatArgs:dartInput",
+      "child-process.spawnSync:dart"
+    ]
+  },
+  {
+    "name": "extension.extensionPath:typescript",
+    "function": "extensionPath",
+    "path": "extension",
+    "workflow": "ast",
+    "args": {},
+    "fanIn": [],
+    "fanOut": [
+      "path.join:typescript"
+    ],
+    "entrypoint": true,
+    "dependencies": [],
+    "executionPlan": [
+      "extension.extensionPath:typescript",
+      "path.join:typescript",
+      "format.formatArgs:typescriptBin",
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "load",
+      "loadTypeScript",
+      "path.format:typescript",
+      "format.formatArgs:typescriptOutput",
+      "format.formatArgs:typescriptInput",
+      "child-process.spawnSync:typescript"
+    ]
+  },
+  {
+    "name": "path.join",
+    "function": "join",
+    "path": "path",
+    "workflow": "ast",
+    "args": {
+      "path1": ".yuml/"
+    },
+    "fanIn": [
+      "workspace.root"
+    ],
+    "fanOut": [
+      "fs.mkdirSync"
+    ],
+    "entrypoint": false,
+    "dependencies": [
+      "workspace.root"
+    ],
+    "executionPlan": [
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir"
+    ]
+  },
+  {
+    "name": "fs.mkdirSync",
+    "function": "mkdirSync",
+    "path": "fs",
+    "workflow": "ast",
+    "args": {},
+    "fanIn": [
+      "path.join"
+    ],
+    "fanOut": [
+      "format.formatArgs:dir"
+    ],
+    "entrypoint": false,
+    "dependencies": [
+      "workspace.root",
+      "path.join"
+    ],
+    "executionPlan": [
+      "fs.mkdirSync",
+      "format.formatArgs:dir"
+    ]
+  },
+  {
+    "name": "format.formatArgs:dir",
+    "function": "formatArgs",
+    "path": "format",
+    "workflow": "ast",
+    "args": {
+      "$path": "dir"
+    },
+    "fanIn": [
+      "fs.mkdirSync"
+    ],
+    "fanOut": [],
+    "entrypoint": false,
+    "dependencies": [
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync"
+    ],
+    "executionPlan": [
+      "format.formatArgs:dir"
+    ]
+  },
+  {
+    "name": "loadDart",
+    "function": "loadDart",
+    "path": null,
+    "workflow": "ast",
+    "args": {},
+    "fanIn": [
+      "load"
+    ],
+    "fanOut": [
+      "format.formatArgs:dartInput",
+      "path.format:dart"
+    ],
+    "entrypoint": false,
+    "dependencies": [
+      "load"
+    ],
+    "executionPlan": [
+      "loadDart",
+      "format.formatArgs:dartInput",
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "path.format:dart",
+      "format.formatArgs:dartOutput",
+      "extension.extensionPath:dart",
+      "path.join:dart",
+      "format.formatArgs:dartBin",
+      "child-process.spawnSync:dart"
+    ]
+  },
+  {
+    "name": "format.formatArgs:dartInput",
+    "function": "formatArgs",
+    "path": "format",
+    "workflow": "ast",
+    "args": {
+      "$path": "arg3"
+    },
+    "fanIn": [
+      "loadDart"
+    ],
+    "fanOut": [
+      "child-process.spawnSync:dart"
+    ],
+    "entrypoint": false,
+    "dependencies": [
+      "load",
+      "loadDart"
+    ],
+    "executionPlan": [
+      "format.formatArgs:dartInput",
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "path.format:dart",
+      "format.formatArgs:dartOutput",
+      "extension.extensionPath:dart",
+      "path.join:dart",
+      "format.formatArgs:dartBin",
+      "child-process.spawnSync:dart"
+    ]
+  },
+  {
+    "name": "format.formatArgs:dartOutput",
+    "function": "formatArgs",
+    "path": "format",
+    "workflow": "ast",
+    "args": {
+      "$path": "arg4"
+    },
+    "fanIn": [
+      "path.format:dart"
+    ],
+    "fanOut": [
+      "child-process.spawnSync:dart"
+    ],
+    "entrypoint": false,
+    "dependencies": [
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "load",
+      "loadDart",
+      "path.format:dart"
+    ],
+    "executionPlan": [
+      "format.formatArgs:dartOutput",
+      "format.formatArgs:dartInput",
+      "extension.extensionPath:dart",
+      "path.join:dart",
+      "format.formatArgs:dartBin",
+      "child-process.spawnSync:dart"
+    ]
+  },
+  {
+    "name": "path.join:dart",
+    "function": "join",
+    "path": "path",
+    "workflow": "ast",
+    "args": {
+      "path1": "ast/dart/main.dart"
+    },
+    "fanIn": [
+      "extension.extensionPath:dart"
+    ],
+    "fanOut": [
+      "format.formatArgs:dartBin"
+    ],
+    "entrypoint": false,
+    "dependencies": [
+      "extension.extensionPath:dart"
+    ],
+    "executionPlan": [
+      "path.join:dart",
+      "format.formatArgs:dartBin",
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "load",
+      "loadDart",
+      "path.format:dart",
+      "format.formatArgs:dartOutput",
+      "format.formatArgs:dartInput",
+      "child-process.spawnSync:dart"
+    ]
+  },
+  {
+    "name": "format.formatArgs:dartBin",
+    "function": "formatArgs",
+    "path": "format",
+    "workflow": "ast",
+    "args": {
+      "$path": "arg2"
+    },
+    "fanIn": [
+      "path.join:dart"
+    ],
+    "fanOut": [
+      "child-process.spawnSync:dart"
+    ],
+    "entrypoint": false,
+    "dependencies": [
+      "extension.extensionPath:dart",
+      "path.join:dart"
+    ],
+    "executionPlan": [
+      "format.formatArgs:dartBin",
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "load",
+      "loadDart",
+      "path.format:dart",
+      "format.formatArgs:dartOutput",
+      "format.formatArgs:dartInput",
+      "child-process.spawnSync:dart"
+    ]
+  },
+  {
+    "name": "loadTypeScript",
+    "function": "loadTypeScript",
+    "path": null,
+    "workflow": "ast",
+    "args": {},
+    "fanIn": [
+      "load"
+    ],
+    "fanOut": [
+      "format.formatArgs:typescriptInput",
+      "path.format:typescript"
+    ],
+    "entrypoint": false,
+    "dependencies": [
+      "load"
+    ],
+    "executionPlan": [
+      "loadTypeScript",
+      "format.formatArgs:typescriptInput",
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "path.format:typescript",
+      "format.formatArgs:typescriptOutput",
+      "extension.extensionPath:typescript",
+      "path.join:typescript",
+      "format.formatArgs:typescriptBin",
+      "child-process.spawnSync:typescript"
+    ]
+  },
+  {
+    "name": "format.formatArgs:typescriptInput",
+    "function": "formatArgs",
+    "path": "format",
+    "workflow": "ast",
+    "args": {
+      "$path": "arg2"
+    },
+    "fanIn": [
+      "loadTypeScript"
+    ],
+    "fanOut": [
+      "child-process.spawnSync:typescript"
+    ],
+    "entrypoint": false,
+    "dependencies": [
+      "load",
+      "loadTypeScript"
+    ],
+    "executionPlan": [
+      "format.formatArgs:typescriptInput",
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "path.format:typescript",
+      "format.formatArgs:typescriptOutput",
+      "extension.extensionPath:typescript",
+      "path.join:typescript",
+      "format.formatArgs:typescriptBin",
+      "child-process.spawnSync:typescript"
+    ]
+  },
+  {
+    "name": "format.formatArgs:typescriptOutput",
+    "function": "formatArgs",
+    "path": "format",
+    "workflow": "ast",
+    "args": {
+      "$path": "arg3"
+    },
+    "fanIn": [
+      "path.format:typescript"
+    ],
+    "fanOut": [
+      "child-process.spawnSync:typescript"
+    ],
+    "entrypoint": false,
+    "dependencies": [
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "load",
+      "loadTypeScript",
+      "path.format:typescript"
+    ],
+    "executionPlan": [
+      "format.formatArgs:typescriptOutput",
+      "format.formatArgs:typescriptInput",
+      "extension.extensionPath:typescript",
+      "path.join:typescript",
+      "format.formatArgs:typescriptBin",
+      "child-process.spawnSync:typescript"
+    ]
+  },
+  {
+    "name": "path.join:typescript",
+    "function": "join",
+    "path": "path",
+    "workflow": "ast",
+    "args": {
+      "path1": "ast/typescript/main.js"
+    },
+    "fanIn": [
+      "extension.extensionPath:typescript"
+    ],
+    "fanOut": [
+      "format.formatArgs:typescriptBin"
+    ],
+    "entrypoint": false,
+    "dependencies": [
+      "extension.extensionPath:typescript"
+    ],
+    "executionPlan": [
+      "path.join:typescript",
+      "format.formatArgs:typescriptBin",
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "load",
+      "loadTypeScript",
+      "path.format:typescript",
+      "format.formatArgs:typescriptOutput",
+      "format.formatArgs:typescriptInput",
+      "child-process.spawnSync:typescript"
+    ]
+  },
+  {
+    "name": "format.formatArgs:typescriptBin",
+    "function": "formatArgs",
+    "path": "format",
+    "workflow": "ast",
+    "args": {
+      "$path": "arg1"
+    },
+    "fanIn": [
+      "path.join:typescript"
+    ],
+    "fanOut": [
+      "child-process.spawnSync:typescript"
+    ],
+    "entrypoint": false,
+    "dependencies": [
+      "extension.extensionPath:typescript",
+      "path.join:typescript"
+    ],
+    "executionPlan": [
+      "format.formatArgs:typescriptBin",
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "load",
+      "loadTypeScript",
+      "path.format:typescript",
+      "format.formatArgs:typescriptOutput",
+      "format.formatArgs:typescriptInput",
+      "child-process.spawnSync:typescript"
+    ]
+  },
+  {
+    "name": "path.format:dart",
+    "function": "format",
+    "path": "path",
+    "workflow": "ast",
+    "args": {
+      "ext": ".json"
+    },
+    "fanIn": [
+      "loadDart",
+      "format.formatArgs:dir"
+    ],
+    "fanOut": [
+      "format.formatArgs:dartOutput"
+    ],
+    "entrypoint": false,
+    "dependencies": [
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "load",
+      "loadDart"
+    ],
+    "executionPlan": [
+      "path.format:dart",
+      "format.formatArgs:dartOutput",
+      "format.formatArgs:dartInput",
+      "extension.extensionPath:dart",
+      "path.join:dart",
+      "format.formatArgs:dartBin",
+      "child-process.spawnSync:dart"
+    ]
+  },
+  {
+    "name": "path.format:typescript",
+    "function": "format",
+    "path": "path",
+    "workflow": "ast",
+    "args": {
+      "ext": ".json"
+    },
+    "fanIn": [
+      "loadTypeScript",
+      "format.formatArgs:dir"
+    ],
+    "fanOut": [
+      "format.formatArgs:typescriptOutput"
+    ],
+    "entrypoint": false,
+    "dependencies": [
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "load",
+      "loadTypeScript"
+    ],
+    "executionPlan": [
+      "path.format:typescript",
+      "format.formatArgs:typescriptOutput",
+      "format.formatArgs:typescriptInput",
+      "extension.extensionPath:typescript",
+      "path.join:typescript",
+      "format.formatArgs:typescriptBin",
+      "child-process.spawnSync:typescript"
+    ]
+  },
+  {
+    "name": "child-process.spawnSync:dart",
+    "function": "spawnSync",
+    "path": "child-process",
+    "workflow": "ast",
+    "args": {
+      "command": "dart",
+      "arg1": "run"
+    },
+    "fanIn": [
+      "format.formatArgs:dartBin",
+      "format.formatArgs:dartInput",
+      "format.formatArgs:dartOutput"
+    ],
+    "fanOut": [],
+    "entrypoint": false,
+    "dependencies": [
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "load",
+      "loadDart",
+      "path.format:dart",
+      "format.formatArgs:dartOutput",
+      "format.formatArgs:dartInput",
+      "extension.extensionPath:dart",
+      "path.join:dart",
+      "format.formatArgs:dartBin"
+    ],
+    "executionPlan": [
+      "child-process.spawnSync:dart"
+    ]
+  },
+  {
+    "name": "child-process.spawnSync:typescript",
+    "function": "spawnSync",
+    "path": "child-process",
+    "workflow": "ast",
+    "args": {
+      "command": "node"
+    },
+    "fanIn": [
+      "format.formatArgs:typescriptBin",
+      "format.formatArgs:typescriptInput",
+      "format.formatArgs:typescriptOutput"
+    ],
+    "fanOut": [],
+    "entrypoint": false,
+    "dependencies": [
+      "workspace.root",
+      "path.join",
+      "fs.mkdirSync",
+      "format.formatArgs:dir",
+      "load",
+      "loadTypeScript",
+      "path.format:typescript",
+      "format.formatArgs:typescriptOutput",
+      "format.formatArgs:typescriptInput",
+      "extension.extensionPath:typescript",
+      "path.join:typescript",
+      "format.formatArgs:typescriptBin"
+    ],
+    "executionPlan": [
+      "child-process.spawnSync:typescript"
+    ]
+  }
+]

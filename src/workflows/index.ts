@@ -1,10 +1,12 @@
 import { Workflows } from "yuml-runner";
+import ast from "@/workflows/ast"
 import extension from "@/workflows/extension"
 import workspace from "@/workflows/workspace"
 import yumlParser from "@/workflows/yuml-parser"
 import yuml from "@/workflows/yuml"
 
 export const workflows = Workflows.fromJson([
+  ...ast,
   ...extension,
   ...workspace,
   ...yumlParser,
@@ -12,6 +14,8 @@ export const workflows = Workflows.fromJson([
 ])
 
 workflows.bindModules({
+  'ast': () => import('@/pipelines/ast') as any,
+  'child-process': () => import('@/pipelines/child-process') as any,
   'extension': () => import('@/pipelines/extension') as any,
   'fetch': () => import('@/pipelines/fetch') as any,
   'format': () => import('@/pipelines/format') as any,
