@@ -16,3 +16,11 @@ export function join(args: {
     .filter(path => path)
   return { path: path.join(...paths) } as Path
 }
+
+export function format(args: Path & { ext?: string, dir?: string }) {
+  const parsedPath = path.parse(args.path)
+  const dir = args.dir ?? parsedPath.dir
+  const ext = args.ext ?? parsedPath.ext
+  const base = parsedPath.name + ext
+  return { path: path.join(dir, base) } as Path
+}
