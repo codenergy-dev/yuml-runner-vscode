@@ -35,3 +35,8 @@ export function writeFileSync(args: Path & { buffer: Buffer, mode?: string }) {
   fs.writeFileSync(args.path, args.buffer, { mode: args.mode })
   return { path: args.path } as Path
 }
+
+export function copyFileSync(args: { src: string, dest: string }) {
+  fs.copyFileSync(args.src, args.dest)
+  return { path: args.dest }
+}
