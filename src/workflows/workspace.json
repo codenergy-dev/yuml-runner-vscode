@@ -6,6 +6,7 @@
     "workflow": "workspace",
     "args": {},
     "fanIn": [],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": true,
     "dependencies": [],
@@ -22,6 +23,7 @@
     "fanIn": [
       "isNotEmpty"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": true,
     "dependencies": [
