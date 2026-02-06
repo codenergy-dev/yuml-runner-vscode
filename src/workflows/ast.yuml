@@ -3,36 +3,27 @@
 // {generate:true}
 // {import:src/pipelines/ast.ts}
 
-[workspace.root]->[path.join|path1=.yuml/]
-[path.join]->[fs.mkdirSync]
-[fs.mkdirSync]->[format.formatArgs:dir|$path=dir]
+[child-process.spawnSync|^script=arg2|^path=arg3|^output=arg4]
 
-[load]->[loadDart]
-[loadDart]->[format.formatArgs:dartInput|$path=arg3]
-[loadDart]->[path.format:dart|ext=.json]
+[path.format|ext=.json|path$=output]^[yuml.dir]
+[path.join|^extensionPath=path|^ast=path1|path$=script]^[extension.extensionPath|path$=extensionPath]
+[path.join]->[child-process.spawnSync]
 
-[path.format:dart]^[format.formatArgs:dir]
-[path.format:dart]->[format.formatArgs:dartOutput|$path=arg4]
+[load]->[path.format]
 
-[extension.extensionPath:dart]->[path.join:dart|path1=ast/dart/main.dart]
-[path.join:dart]->[format.formatArgs:dartBin|$path=arg2]
+[load]->[loadDart|command=dart|arg1=run|ast=ast/dart/main.dart]
+[loadDart]?->[path.join]
+[loadDart]?->[child-process.spawnSync]
 
-[child-process.spawnSync:dart|command=dart|arg1=run]
-[format.formatArgs:dartBin]->[child-process.spawnSync:dart]
-[format.formatArgs:dartInput]->[child-process.spawnSync:dart]
-[format.formatArgs:dartOutput]->[child-process.spawnSync:dart]
+[load]->[loadTypeScript|command=node|ast=ast/typescript/main.js]
+[loadTypeScript]?->[path.join]
+[loadTypeScript]?->[child-process.spawnSync]
 
-[load]->[loadTypeScript]
-[loadTypeScript]->[format.formatArgs:typescriptInput|$path=arg2]
-[loadTypeScript]->[path.format:typescript|ext=.json]
+[child-process.spawnSync]^[path.format]
+[child-process.spawnSync]->[fs.existsSync|^output=path]
 
-[path.format:typescript]^[format.formatArgs:dir]
-[path.format:typescript]->[format.formatArgs:typescriptOutput|$path=arg3]
+[fs.existsSync]^[path.format]
+[fs.existsSync]->[fs.readFileSync|encoding=utf-8]
+[fs.readFileSync]->[json.parse|^data=text]
 
-[extension.extensionPath:typescript]->[path.join:typescript|path1=ast/typescript/main.js]
-[path.join:typescript]->[format.formatArgs:typescriptBin|$path=arg1]
-
-[child-process.spawnSync:typescript|command=node]
-[format.formatArgs:typescriptBin]->[child-process.spawnSync:typescript]
-[format.formatArgs:typescriptInput]->[child-process.spawnSync:typescript]
-[format.formatArgs:typescriptOutput]->[child-process.spawnSync:typescript]
+[json.parse]->[output]
