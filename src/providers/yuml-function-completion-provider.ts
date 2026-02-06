@@ -5,7 +5,7 @@ import { getYumlFunctionArgs, getYumlFunctionArgsFromPipelines, YumlFunctionArgs
 
 export const YumlFunctionCompletionProvider = vscode.languages.registerCompletionItemProvider(
   { scheme: 'file', language: 'yuml' }, {
-  provideCompletionItems(document, position) {
+  async provideCompletionItems(document, position) {
     const workspaceFolders = vscode.workspace.workspaceFolders
     if (!workspaceFolders) return
     
@@ -18,11 +18,11 @@ export const YumlFunctionCompletionProvider = vscode.languages.registerCompletio
       if (fs.statSync(importFilePath).isDirectory()) return
       if (!importFilePath.endsWith('.js') && !importFilePath.endsWith('.ts')) return
       yumlFunctionArgs = {
-        ...getYumlFunctionArgs(importFilePath),
-        ...getYumlFunctionArgsFromPipelines([importFilePath]),
+        ...await getYumlFunctionArgs(importFilePath),
+        ...await getYumlFunctionArgsFromPipelines([importFilePath]),
       }
     } else {
-      yumlFunctionArgs = getYumlFunctionArgsFromPipelines()
+      yumlFunctionArgs = await getYumlFunctionArgsFromPipelines()
     }
     
     const line = document.lineAt(position)
