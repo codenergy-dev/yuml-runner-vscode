@@ -20,6 +20,7 @@ workflows.bindModules({
   'fetch': () => import('@/pipelines/fetch') as any,
   'format': () => import('@/pipelines/format') as any,
   'fs': () => import('@/pipelines/fs') as any,
+  'json': () => import('@/pipelines/json') as any,
   'path': () => import('@/pipelines/path') as any,
   'workspace': () => import('@/pipelines/workspace') as any,
   'yuml-parser': () => import('@/pipelines/yuml-parser') as any,
