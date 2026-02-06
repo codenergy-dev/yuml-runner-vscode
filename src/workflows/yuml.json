@@ -6,6 +6,7 @@
     "workflow": "yuml",
     "args": {},
     "fanIn": [],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": false,
     "dependencies": [],
@@ -22,6 +23,7 @@
     "fanIn": [
       "fs.readFileSync"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": true,
     "dependencies": [
@@ -49,6 +51,7 @@
     "fanIn": [
       "fs.existsSync"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": false,
     "dependencies": [
@@ -69,6 +72,7 @@
     "fanIn": [
       "path.join"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": false,
     "dependencies": [
@@ -90,6 +94,7 @@
     "fanIn": [
       "workspace.root"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": false,
     "dependencies": [
@@ -108,6 +113,7 @@
     "fanIn": [
       "path.join:workflows"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": true,
     "dependencies": [
@@ -141,6 +147,7 @@
     "fanIn": [
       "json"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": false,
     "dependencies": [
@@ -155,6 +162,73 @@
     ]
   },
   {
+    "name": "dir",
+    "function": "dir",
+    "path": null,
+    "workflow": "yuml",
+    "args": {},
+    "fanIn": [
+      "fs.mkdirSync"
+    ],
+    "fanInNullable": [],
+    "fanOut": [],
+    "entrypoint": true,
+    "dependencies": [
+      "workspace.root",
+      "path.join:dir",
+      "fs.mkdirSync"
+    ],
+    "executionPlan": [
+      "workspace.root",
+      "path.join:dir",
+      "fs.mkdirSync",
+      "dir"
+    ]
+  },
+  {
+    "name": "fs.mkdirSync",
+    "function": "mkdirSync",
+    "path": "fs",
+    "workflow": "yuml",
+    "args": {
+      "path$": "dir"
+    },
+    "fanIn": [
+      "path.join:dir"
+    ],
+    "fanInNullable": [],
+    "fanOut": [],
+    "entrypoint": false,
+    "dependencies": [
+      "workspace.root",
+      "path.join:dir"
+    ],
+    "executionPlan": [
+      "fs.mkdirSync"
+    ]
+  },
+  {
+    "name": "path.join:dir",
+    "function": "join",
+    "path": "path",
+    "workflow": "yuml",
+    "args": {
+      "path1": ".yuml/"
+    },
+    "fanIn": [
+      "workspace.root"
+    ],
+    "fanInNullable": [],
+    "fanOut": [],
+    "entrypoint": false,
+    "dependencies": [
+      "workspace.root"
+    ],
+    "executionPlan": [
+      "path.join:dir"
+    ]
+  },
+  {
     "name": "path.join:workflows",
     "function": "join",
     "path": "path",
@@ -164,6 +238,7 @@
       "format.formatArgs",
       "workspace.root"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": false,
     "dependencies": [

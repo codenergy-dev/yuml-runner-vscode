@@ -18,3 +18,9 @@
 [path.join:workflows]^[format.formatArgs]
 
 [path.join:workflows]^[workspace.root]
+
+[dir]^[fs.mkdirSync|path$=dir]
+
+[fs.mkdirSync]^[path.join:dir|path1=.yuml/]
+
+[path.join:dir]^[workspace.root]

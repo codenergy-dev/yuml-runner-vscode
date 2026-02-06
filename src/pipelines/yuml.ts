@@ -25,3 +25,7 @@ export function watch(args: Path) {
   watcher.onDidChange(uri => workflows.run('yuml-parser', 'run', { args: { yuml: uri.fsPath } }))
   watcher.onDidCreate(uri => workflows.run('yuml-parser', 'run', { args: { yuml: uri.fsPath } }))
 }
+
+export function dir(args: Path) {
+  return args
+}
