@@ -6,6 +6,7 @@
     "workflow": "example",
     "args": {},
     "fanIn": [],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": true,
     "dependencies": [],
@@ -20,6 +21,7 @@
     "workflow": "example",
     "args": {},
     "fanIn": [],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": true,
     "dependencies": [],
@@ -34,6 +36,7 @@
     "workflow": "example",
     "args": {},
     "fanIn": [],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": true,
     "dependencies": [],
@@ -50,6 +53,7 @@
     "fanIn": [
       "A"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "b",
       "b2"
@@ -87,6 +91,7 @@
     "fanIn": [
       "a"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "c"
     ],
@@ -114,6 +119,7 @@
     "fanIn": [
       "b"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "d",
       "h3"
@@ -142,6 +148,7 @@
     "fanIn": [
       "c"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "f"
     ],
@@ -167,6 +174,7 @@
     "fanIn": [
       "d"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "g"
     ],
@@ -192,6 +200,7 @@
     "fanIn": [
       "f"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": false,
     "dependencies": [
@@ -215,6 +224,7 @@
     "fanIn": [
       "a"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "c2"
     ],
@@ -247,6 +257,7 @@
     "fanIn": [
       "b2"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "d2"
     ],
@@ -279,6 +290,7 @@
     "fanIn": [
       "c2"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "e2"
     ],
@@ -311,6 +323,7 @@
     "fanIn": [
       "e2"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "h",
       "h2"
@@ -344,6 +357,7 @@
     "fanIn": [
       "f2"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": false,
     "dependencies": [
@@ -369,6 +383,7 @@
     "fanIn": [
       "f2"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "a",
       "h3"
@@ -402,6 +417,7 @@
       "c",
       "H"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": false,
     "dependencies": [
@@ -425,6 +441,7 @@
       "d2",
       "E"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "f2"
     ],
