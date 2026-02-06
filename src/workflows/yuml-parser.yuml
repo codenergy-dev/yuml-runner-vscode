@@ -14,7 +14,7 @@
 
 [fetch.responseOk]->[fetch.download]
 
-[fs.writeFileSync|mode=755]
+[fs.writeFileSync|mode="755"]
 [download]->[fs.writeFileSync]
 
 [fetch.download]->[fs.writeFileSync]

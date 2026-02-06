@@ -6,6 +6,7 @@
     "workflow": "yuml-parser",
     "args": {},
     "fanIn": [],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": false,
     "dependencies": [],
@@ -22,6 +23,7 @@
     "fanIn": [
       "fs.mkdirSync"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "fetch.get",
       "fs.writeFileSync"
@@ -52,6 +54,7 @@
     "fanIn": [
       "path.join"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": false,
     "dependencies": [
@@ -71,6 +74,7 @@
     "fanIn": [
       "download"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "fetch.responseOk"
     ],
@@ -99,6 +103,7 @@
     "fanIn": [
       "workspace.root"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": false,
     "dependencies": [
@@ -117,6 +122,7 @@
     "fanIn": [
       "fetch.get"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "fetch.download"
     ],
@@ -143,6 +149,7 @@
     "fanIn": [
       "fetch.responseOk"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "fs.writeFileSync"
     ],
@@ -171,6 +178,7 @@
     "fanIn": [
       "workspace.root"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": false,
     "dependencies": [
@@ -186,12 +194,13 @@
     "path": "fs",
     "workflow": "yuml-parser",
     "args": {
-      "mode": 755
+      "mode": "755"
     },
     "fanIn": [
       "download",
       "fetch.download"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": false,
     "dependencies": [
@@ -217,6 +226,7 @@
       "download",
       "format.formatArgs"
     ],
+    "fanInNullable": [],
     "fanOut": [],
     "entrypoint": true,
     "dependencies": [
