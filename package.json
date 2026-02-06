@@ -54,6 +54,6 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
-    "yuml-runner": "github:codenergy-dev/yuml-runner-js#v1.1.0"
+    "yuml-runner": "github:codenergy-dev/yuml-runner-js#v1.1.2"
   }
 }
