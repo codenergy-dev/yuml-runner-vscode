@@ -6,6 +6,7 @@
     "workflow": "extension",
     "args": {},
     "fanIn": [],
+    "fanInNullable": [],
     "fanOut": [
       "yuml.json"
     ],
@@ -19,6 +20,21 @@
     ]
   },
   {
+    "name": "yuml.watch",
+    "function": "watch",
+    "path": "yuml",
+    "workflow": "extension",
+    "args": {},
+    "fanIn": [],
+    "fanInNullable": [],
+    "fanOut": [],
+    "entrypoint": false,
+    "dependencies": [],
+    "executionPlan": [
+      "yuml.watch"
+    ]
+  },
+  {
     "name": "yuml.json",
     "function": "json",
     "path": "yuml",
@@ -27,6 +43,7 @@
     "fanIn": [
       "activate"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "yuml-parser.download"
     ],
@@ -49,6 +66,7 @@
     "fanIn": [
       "yuml.json"
     ],
+    "fanInNullable": [],
     "fanOut": [
       "yuml.watch"
     ],
@@ -59,26 +77,6 @@
     ],
     "executionPlan": [
       "yuml-parser.download",
-      "yuml.watch"
-    ]
-  },
-  {
-    "name": "yuml.watch",
-    "function": "watch",
-    "path": "yuml",
-    "workflow": "extension",
-    "args": {},
-    "fanIn": [
-      "yuml-parser.download"
-    ],
-    "fanOut": [],
-    "entrypoint": false,
-    "dependencies": [
-      "activate",
-      "yuml.json",
-      "yuml-parser.download"
-    ],
-    "executionPlan": [
       "yuml.watch"
     ]
   }

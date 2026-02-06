@@ -5,4 +5,4 @@
 
 [yuml.json]->[yuml-parser.download]
 
-[yuml-parser.download]->[yuml.watch]
+[yuml-parser.download]-.->[yuml.watch]
